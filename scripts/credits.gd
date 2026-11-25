@@ -41,6 +41,7 @@ func _ready() -> void:
 	var panel := ScrollContainer.new()
 	panel.position = Vector2(60, 40)
 	panel.size = Vector2(520, 250)
+	panel.add_theme_constant_override("scrollbar_width", 8)
 	panel.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	add_child(panel)
 
@@ -53,6 +54,7 @@ func _ready() -> void:
 	text.add_theme_font_override("bold_font", UiKit.FONT)
 	text.add_theme_font_size_override("normal_font_size", 6)
 	text.add_theme_font_size_override("bold_font_size", 7)
+	text.add_theme_constant_override("line_separation", 6)
 	text.add_theme_color_override("default_color", UiKit.INK)
 	text.text = LINES
 	panel.add_child(text)

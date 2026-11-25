@@ -56,6 +56,16 @@ cd juego2
 godot --path .            # o abre project.godot desde el editor de Godot 4.x
 ```
 
+### Versión web (sin instalar nada)
+
+```bash
+./tools/build_web.sh    # exporta a build/web/
+./tools/serve_web.sh    # http://localhost:8060/  (cabeceras COOP/COEP)
+```
+
+El runtime de Godot usa hilos (`SharedArrayBuffer`), por eso hay que servirlo
+con esas cabeceras y no abriendo `index.html` directamente.
+
 ### Con `adb` (si tienes el teléfono conectado por USB)
 
 ```bash

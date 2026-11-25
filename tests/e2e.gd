@@ -1,0 +1,77 @@
+extends Node
+## Test end-to-end sin ventana: instancia el nivel y comprueba las mecánicas
+## obligatorias (llave, daño con corazón y reaparición, puerta que avanza).
+## Ejecutar:  godot --headless --path . res://tests/e2e.tscn
+
+var fails := 0
+
+
+func check(cond: bool, what: String) -> void:
+	print(("  PASS  " if cond else "  FAIL  ") + what)
+	if not cond:
+		fails += 1
+
+
+func _ready() -> void:
+	print("== TEST E2E: La Llave del Laberinto ==")
+	GameState.reset_run()
+	var game: Node = load("res://scenes/game.tscn").instantiate()
+	add_child(game)
+	await get_tree().physics_frame
+
+	var player: Player = game.get("player")
+	check(player != null, "el nivel instancia al jugador")
+	check(GameState.hearts == GameState.MAX_HEARTS, "arranca con %d corazones" % GameState.MAX_HEARTS)
+	check(map_has(game, "key_item"), "el nivel 1 contiene una llave")
+	check(map_has(game, "door"), "el nivel 1 contiene una puerta")
+	check(count_nodes(game, "spike") > 0, "el nivel 1 contiene pinchos (%d)" % count_nodes(game, "spike"))
+
+	var key: Node2D = game.get_node_or_null("key_item")
+	player.global_position = key.global_position
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	check(GameState.has_key, "tocar la llave la recoge")
+
+	var spike: Node2D = first_node(game, "spike")
+	var before := GameState.hearts
+	player.global_position = spike.global_position
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	check(GameState.hearts == before - 1, "el pincho quita un corazón (%d -> %d)" % [before, GameState.hearts])
+	check(player.global_position.distance_to(player.start_pos) < 2.0, "tras el golpe reaparece en el inicio")
+
+	# Agotar los corazones restantes debe llevar a Game Over.
+	while GameState.hearts > 1:
+		player._invuln = 0.0
+		player.take_hit()
+	check(GameState.hearts == 1, "los corazones no bajan de 1 mientras se juega")
+
+	# Puerta con llave: se llama al manejador directo para no perder el test
+	# en el cambio de escena (que es diferido).
+	GameState.has_key = true
+	var door: Node = game.get_node_or_null("door")
+	door._on_body_entered(player)
+	check(GameState.level_index == 1, "la puerta con llave avanza al nivel 2")
+	check(not GameState.has_key, "la llave se consume al cruzar")
+
+	print("== RESULTADO: %d fallo(s) ==" % fails)
+	get_tree().quit(0 if fails == 0 else 1)
+
+
+func map_has(parent: Node, node_name: String) -> bool:
+	return parent.get_node_or_null(node_name) != null
+
+
+func count_nodes(parent: Node, prefix: String) -> int:
+	var n := 0
+	for child in parent.get_children():
+		if String(child.name).begins_with(prefix):
+			n += 1
+	return n
+
+
+func first_node(parent: Node, prefix: String) -> Node2D:
+	for child in parent.get_children():
+		if String(child.name).begins_with(prefix):
+			return child as Node2D
+	return null

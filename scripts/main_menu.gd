@@ -22,7 +22,7 @@ func _ready() -> void:
 	add_child(tagline)
 
 	var box := VBoxContainer.new()
-	box.position = Vector2(235, 160)
+	box.position = Vector2(235, 170)
 	box.custom_minimum_size = Vector2(170, 0)
 	box.add_theme_constant_override("separation", 8)
 	add_child(box)
@@ -41,7 +41,12 @@ func _ready() -> void:
 
 	play.grab_focus()
 
-	var footer := UiKit.label("v0.2-ALPHA  ·  GODOT 4", 6, Color("5f677f"))
+	var record := UiKit.label("RECORD %04d" % GameState.best_score, 6, UiKit.GOLD if GameState.best_score > 0 else Color("5f677f"))
+	record.position = Vector2(0, 144)
+	record.size = Vector2(640, 12)
+	add_child(record)
+
+	var footer := UiKit.label("v0.3-BETA  ·  GODOT 4", 6, Color("5f677f"))
 	footer.position = Vector2(0, 336)
 	footer.size = Vector2(640, 12)
 	add_child(footer)

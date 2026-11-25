@@ -23,8 +23,22 @@ func _ready() -> void:
 	level.size = Vector2(640, 14)
 	add_child(level)
 
+	# Marcador final: se guarda el record en user://record.cfg.
+	var is_record := GameState.commit_record()
+	var marcador := UiKit.label("PUNTOS %04d" % GameState.score, 8, UiKit.GOLD)
+	marcador.position = Vector2(0, 168)
+	marcador.size = Vector2(640, 12)
+	add_child(marcador)
+
+	var record := UiKit.label(
+		"NUEVO RECORD" if is_record else "RECORD %04d" % GameState.best_score,
+		6, UiKit.GOLD if is_record else UiKit.DIM)
+	record.position = Vector2(0, 186)
+	record.size = Vector2(640, 12)
+	add_child(record)
+
 	var box := VBoxContainer.new()
-	box.position = Vector2(235, 196)
+	box.position = Vector2(235, 226)
 	box.custom_minimum_size = Vector2(170, 0)
 	box.add_theme_constant_override("separation", 8)
 	add_child(box)
@@ -44,4 +58,4 @@ func _ready() -> void:
 func _draw() -> void:
 	draw_rect(Rect2(0, 0, 640, 360), UiKit.BG)
 	for i in GameState.MAX_HEARTS:
-		UiKit.draw_heart(self, Vector2(320 - (GameState.MAX_HEARTS - 1) * 14 + i * 28, 180), i < GameState.hearts, 1.4)
+		UiKit.draw_heart(self, Vector2(320 - (GameState.MAX_HEARTS - 1) * 14 + i * 28, 212), i < GameState.hearts, 1.4)

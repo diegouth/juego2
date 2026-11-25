@@ -1,4 +1,4 @@
-# 🔑 La Llave del Laberinto — `v0.2-alpha`
+# 🔑 La Llave del Laberinto — `v0.3-beta`
 
 Prototipo jugable 2D hecho con **Godot 4** para la materia de desarrollo de
 videojuegos. Recorres dos laberintos, esquivas pinchos y enemigos, recoges la
@@ -20,6 +20,7 @@ si los pierdes, *Game Over*.
 [![Descargar APK](https://img.shields.io/badge/descargar-APK%20Android-brightgreen)](https://github.com/diegouth/juego2/releases/download/v0.2-alpha/llave-del-laberinto-v0.2-alpha.apk)
 
 Vídeo de demostración: [`docs/video/demo.mp4`](docs/video/demo.mp4) (3:45, 4,9 MB).
+Clip individual del integrante jugando: [`docs/video/individual-diego.mp4`](docs/video/individual-diego.mp4) (0:50).
 
 ## 👥 Integrantes
 
@@ -75,6 +76,19 @@ La puerta permanece **cerrada** hasta recoger la llave del nivel; al tocarla
 con la llave avanzas de escena. Los **pinchos** y los **enemigos** quitan un
 corazón y te devuelven al inicio del nivel, con 1,2 s de invulnerabilidad.
 
+### Puntaje
+
+Cada partida arranca en `PUNTOS 0000` (arriba a la izquierda de la HUD) y suma:
+
+| Acción | Puntos |
+|---|---|
+| Recoger una moneda | +10 |
+| Recoger la llave | +50 |
+| Cruzar la puerta | +100 |
+
+El **récord** se guarda en `user://record.cfg` y aparece en el menú y en la
+pantalla de fin. Una partida completa de los dos niveles vale 460 puntos.
+
 ---
 
 ## 🧩 Lo que ya funciona (Fase 1)
@@ -87,7 +101,9 @@ corazón y te devuelven al inicio del nivel, con 1,2 s de invulnerabilidad.
 - [x] **Game Over** con *Reintentar* (vuelve al nivel 1) y *Menú*
 - [x] Pantalla de **créditos** con atribución de motor, fuente, arte y audio
 - [x] Audio: música de fondo en bucle y efectos (llave, daño, puerta, game over)
+- [x] **Puntaje**: monedas (+10), llave (+50), puerta (+100) y récord persistente
 - [x] Diseño de niveles en archivos de texto (`levels/*.txt`)
+- [x] **Manual de usuario** ([`docs/MANUAL.md`](docs/MANUAL.md)) y **reporte de pruebas de beta** ([`docs/PRUEBAS-BETA.md`](docs/PRUEBAS-BETA.md))
 
 ---
 
@@ -116,10 +132,19 @@ Los niveles (`levels/*.txt`) se incluyen en el paquete mediante el filtro
 ./tools/test.sh
 ```
 
-Ejecuta `tests/e2e.tscn` en modo headless y comprueba, sin abrir ventana:
-instanciación del nivel, corazones iniciales, presencia de llave/puerta/pinchos,
-recogida de la llave, daño del pincho, reaparición en el inicio y avance de
-nivel al cruzar la puerta con llave.
+Ejecuta `tests/e2e.tscn` en modo headless y comprueba, sin abrir ventana,
+**15 casos**: instanciación del nivel, corazones iniciales, presencia de
+llave/puerta/pinchos/monedas, recogida de la llave (+50), recogida de moneda
+(+10), desaparición del coleccionable, daño del pincho, reaparición en el
+inicio, tope de corazones, y avance de nivel al cruzar la puerta con llave.
+
+```bash
+# 15/15 en verde
+./tools/test.sh
+```
+
+Los casos manuales y los defectos encontrados están en
+[`docs/PRUEBAS-BETA.md`](docs/PRUEBAS-BETA.md).
 
 ---
 
@@ -135,6 +160,7 @@ scripts/
   player.gd             Movimiento, daño e invulnerabilidad
   spike.gd / enemy.gd   Obstáculos que quitan corazones
   key_item.gd / door.gd Llave y puerta (cambio de escena)
+  coin.gd               Moneda: coleccionable que suma puntaje
   hud.gd                Corazones, llave, nivel, avisos y joystick
   ui_kit.gd             Fuente, botones y dibujo de iconos compartidos
   main_menu.gd / end_screen.gd / credits.gd
@@ -145,6 +171,9 @@ assets/audio/           Música y efectos generados con tools/gen_audio.py
 tests/                  Prueba e2e headless y generador de capturas
 tools/                  gen_audio.py, build_apk.sh, test.sh
 docs/screenshots/       Capturas usadas en este README
+docs/MANUAL.md          Manual de usuario (instalación, controles, reglas)
+docs/PRUEBAS-BETA.md    Reporte de pruebas de la beta (casos y defectos)
+docs/video/demo.mp4     Video de demostración
 ```
 
 ---
@@ -161,6 +190,8 @@ docs/screenshots/       Capturas usadas en este README
 | [PR #1](../../pull/1) | `feature/nucleo-jugable` | Menú, jugador, nivel 1, llave, puerta, cambio de escena, pinchos, enemigos, corazones, HUD, Game Over |
 | [PR #2](../../pull/2) | `feature/creditos-y-release` | Créditos, audio, pruebas e2e, export Android, README y capturas |
 | [PR #3](../../pull/3) | `feature/video-y-reporte` | Bot de demostración, vídeo MP4, capturas corregidas y reporte final |
+| [PR #4](../../pull/4) | `fix/readme-enlaces` | Enlaces de descarga y nombres del equipo en el README |
+| [PR #5](../../pull/5) | `feature/puntaje-y-monedas` | Monedas y puntaje con récord, manual de usuario, reporte de pruebas de beta y capturas nuevas |
 
 ---
 

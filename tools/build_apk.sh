@@ -5,7 +5,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 GODOT="${GODOT:-godot}"
-OUT="${1:-build/llave-del-laberinto-v0.2-alpha.apk}"
+OUT="${1:-build/llave-del-laberinto-v0.3-beta.apk}"
 export JAVA_HOME="${JAVA_HOME:-$HOME/.local/opt/jdk17}"
 
 mkdir -p build

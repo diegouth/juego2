@@ -17,11 +17,15 @@ si los pierdes, *Game Over*.
 
 ---
 
+[![Descargar APK](https://img.shields.io/badge/descargar-APK%20Android-brightgreen)](https://github.com/diegouth/juego2/releases/download/v0.2-alpha/llave-del-laberinto-v0.2-alpha.apk)
+
+Vídeo de demostración: [`docs/video/demo.mp4`](docs/video/demo.mp4) (3:45, 4,9 MB).
+
 ## 👥 Integrantes
 
 | Integrante | Rol | PRs |
 |---|---|---|
-| **Diego** (completar apellido / iniciales) | Programación, diseño de niveles, arte y audio | [PR #1](../../pull/1) · [PR #2](../../pull/2) |
+| **Diego Alejandro Franco Partida** | Programación, diseño de niveles, arte, audio y pruebas | [PR #1](../../pull/1) · [PR #2](../../pull/2) · [PR #3](../../pull/3) |
 
 > Equipo de una persona: cada integrante abre sus ramas `feature/...`, las
 > revisa y las fusiona a `main` con un Pull Request (ver
@@ -156,15 +160,7 @@ docs/screenshots/       Capturas usadas en este README
 |---|---|---|
 | [PR #1](../../pull/1) | `feature/nucleo-jugable` | Menú, jugador, nivel 1, llave, puerta, cambio de escena, pinchos, enemigos, corazones, HUD, Game Over |
 | [PR #2](../../pull/2) | `feature/creditos-y-release` | Créditos, audio, pruebas e2e, export Android, README y capturas |
-
-Para publicar el repositorio y abrir los PRs:
-
-```bash
-git remote add origin git@github.com:<usuario>/juego2.git
-git push -u origin main
-git push origin feature/nucleo-jugable feature/creditos-y-release
-# y en GitHub: "Compare & pull request" para cada rama
-```
+| [PR #3](../../pull/3) | `feature/video-y-reporte` | Bot de demostración, vídeo MP4, capturas corregidas y reporte final |
 
 ---
 

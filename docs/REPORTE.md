@@ -17,7 +17,7 @@
 | PR #1 — núcleo jugable | `https://github.com/diegouth/juego2/pull/1` |
 | PR #2 — créditos, pruebas y release | `https://github.com/diegouth/juego2/pull/2` |
 | Video general del prototipo | `docs/video/demo.mp4` (en el repo, 3:45) |
-| Video individual jugando | `<enlace>` |
+| Video individual jugando | pendiente de grabar (clip del integrante jugando en el teléfono) |
 
 ## 2. Qué se entregó
 

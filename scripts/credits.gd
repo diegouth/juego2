@@ -7,8 +7,8 @@ const LINES := """[center][color=#f2c14e]CRÉDITOS[/color][/center]
 Prototipo jugable 2D. Proyecto de desarrollo de videojuegos.
 
 [color=#f2c14e]EQUIPO[/color]
-Diego — programación, diseño de niveles, arte y sonido.
-(Completar aquí los nombres del equipo.)
+Diego Alejandro Franco Partida
+Programación, diseño de niveles, arte, sonido y pruebas.
 
 [color=#f2c14e]MOTOR[/color]
 Godot Engine 4.7.2 — MIT License

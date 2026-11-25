@@ -1,8 +1,8 @@
 # Reporte final — La Llave del Laberinto `v0.2-alpha`
 
 **Materia:** Desarrollo de Videojuegos
-**Integrante:** Diego ____________________ (iniciales: ____)
-**Fecha:** ____ / ____ / 2026
+**Integrante:** Diego Alejandro Franco Partida
+**Fecha:** 25 / 11 / 2026
 **Motor:** Godot 4.7.2 · **Lenguaje:** GDScript
 **Formato entregado:** APK para Android (`.apk`, firmado, instalable)
 
@@ -12,11 +12,11 @@
 
 | Elemento | Enlace |
 |---|---|
-| Repositorio | `https://github.com/<usuario>/juego2` |
-| Release `v0.2-alpha` con el APK | `https://github.com/<usuario>/juego2/releases/tag/v0.2-alpha` |
-| PR #1 — núcleo jugable | `https://github.com/<usuario>/juego2/pull/1` |
-| PR #2 — créditos, pruebas y release | `https://github.com/<usuario>/juego2/pull/2` |
-| Video general del prototipo | `docs/video/demo.mp4` (en el repo) / `<enlace>` |
+| Repositorio | `https://github.com/diegouth/juego2` |
+| Release `v0.2-alpha` con el APK | `https://github.com/diegouth/juego2/releases/tag/v0.2-alpha` |
+| PR #1 — núcleo jugable | `https://github.com/diegouth/juego2/pull/1` |
+| PR #2 — créditos, pruebas y release | `https://github.com/diegouth/juego2/pull/2` |
+| Video general del prototipo | `docs/video/demo.mp4` (en el repo, 3:45) |
 | Video individual jugando | `<enlace>` |
 
 ## 2. Qué se entregó
@@ -63,7 +63,7 @@ llave, evita pinchos y enemigos, cruza la puerta, `Esc` vuelve al menú.
 
 | Integrante | Aportaciones | PRs |
 |---|---|---|
-| Diego | Motor, jugador, niveles, llave/puerta, obstáculos, vidas, HUD, menú, fin de partida, créditos, audio, pruebas, export Android, README y video | #1, #2 |
+| Diego Alejandro Franco Partida | Motor, jugador, niveles, llave/puerta, obstáculos, vidas, HUD, menú, fin de partida, créditos, audio, pruebas, export Android, README y video | #1, #2, #3 |
 
 ## 6. Notas y trabajo futuro
 

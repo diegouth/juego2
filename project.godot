@@ -1,0 +1,38 @@
+; Configuración del proyecto Godot 4.x — "La Llave del Laberinto"
+; El mapa de entrada se define en código (scripts/game_state.gd) para que el
+; proyecto no dependa de binarios ni de object() en este archivo.
+
+config_version=5
+
+[application]
+
+config/name="La Llave del Laberinto"
+config/description="Prototipo jugable 2D: menú, llave, puerta, obstáculos, vidas y créditos."
+run/main_scene="res://scenes/main_menu.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="res://icon.svg"
+boot_splash/show_image=false
+
+[autoload]
+
+GameState="*res://scripts/game_state.gd"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+window/handheld/orientation=1
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.07, 0.08, 0.12, 1)

@@ -25,6 +25,7 @@
 | Video general del prototipo | [`docs/video/demo.mp4`](video/demo.mp4) |
 | Video individual jugando | [`docs/video/individual-diego.mp4`](video/individual-diego.mp4) |
 | Capturas | [`docs/screenshots/`](screenshots) |
+| Este reporte en Word | [`docs/Reporte-Actividad-2.docx`](Reporte-Actividad-2.docx) — 13 páginas con capturas |
 
 ## 2. Requisitos de la actividad → dónde se cumplen
 

@@ -114,6 +114,7 @@ pantalla de fin. Una partida completa de los dos niveles vale 460 puntos.
 - [x] **Puntaje**: monedas (+10), llave (+50), puerta (+100) y récord persistente
 - [x] Diseño de niveles en archivos de texto (`levels/*.txt`)
 - [x] **Manual de usuario** ([`docs/MANUAL.md`](docs/MANUAL.md)) y **reporte de pruebas de beta** ([`docs/PRUEBAS-BETA.md`](docs/PRUEBAS-BETA.md))
+- [x] **Portafolio en Word** ([`docs/Reporte-Actividad-2.docx`](docs/Reporte-Actividad-2.docx)) generado desde el repositorio
 
 ---
 
@@ -179,10 +180,11 @@ level_2.txt                             ^ pincho, E enemigo)
 assets/fonts/           Press Start 2P + licencia OFL
 assets/audio/           Música y efectos generados con tools/gen_audio.py
 tests/                  Prueba e2e headless y generador de capturas
-tools/                  gen_audio.py, build_apk.sh, test.sh
+tools/                  gen_audio.py, build_apk.sh, build_web.sh, test.sh, make_report_docx.py
 docs/screenshots/       Capturas usadas en este README
 docs/MANUAL.md          Manual de usuario (instalación, controles, reglas)
 docs/PRUEBAS-BETA.md    Reporte de pruebas de la beta (casos y defectos)
+docs/Reporte-Actividad-2.docx   Portafolio de evidencias en Word (13 páginas)
 docs/video/demo.mp4     Video de demostración
 ```
 

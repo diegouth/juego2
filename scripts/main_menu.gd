@@ -31,6 +31,10 @@ func _ready() -> void:
 	play.pressed.connect(_on_play)
 	box.add_child(play)
 
+	var credits := UiKit.button("CRÉDITOS")
+	credits.pressed.connect(func() -> void: get_tree().change_scene_to_file("res://scenes/credits.tscn"))
+	box.add_child(credits)
+
 	var quit := UiKit.button("SALIR")
 	quit.pressed.connect(func() -> void: get_tree().quit())
 	box.add_child(quit)

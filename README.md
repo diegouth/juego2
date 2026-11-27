@@ -17,7 +17,7 @@ si los pierdes, *Game Over*.
 
 ---
 
-[![Descargar APK](https://img.shields.io/badge/descargar-APK%20Android-brightgreen)](https://github.com/diegouth/juego2/releases/download/v0.2-alpha/llave-del-laberinto-v0.2-alpha.apk)
+[![Descargar APK](https://img.shields.io/badge/descargar-APK%20Android-brightgreen)](https://github.com/diegouth/juego2/releases/download/v0.3-beta/llave-del-laberinto-v0.3-beta.apk)
 
 Vídeo de demostración: [`docs/video/demo.mp4`](docs/video/demo.mp4) (3:45, 4,9 MB).
 Clip individual del integrante jugando: [`docs/video/individual-diego.mp4`](docs/video/individual-diego.mp4) (0:50).

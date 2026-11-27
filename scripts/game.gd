@@ -9,6 +9,7 @@ const SPIKE_SCRIPT := preload("res://scripts/spike.gd")
 const KEY_SCRIPT := preload("res://scripts/key_item.gd")
 const DOOR_SCRIPT := preload("res://scripts/door.gd")
 const ENEMY_SCRIPT := preload("res://scripts/enemy.gd")
+const COIN_SCRIPT := preload("res://scripts/coin.gd")
 const HUD_SCRIPT := preload("res://scripts/hud.gd")
 
 var map: Array[String] = []
@@ -78,6 +79,7 @@ func _build_level() -> void:
 				"D": _spawn(DOOR_SCRIPT, Vector2(x, y))
 				"^": spikes.append(Vector2i(x, y))
 				"E": _spawn_enemy(x, y)
+				"C": _spawn(COIN_SCRIPT, Vector2(x, y))
 			x += 1
 	for cell in spikes:
 		_spawn(SPIKE_SCRIPT, Vector2(cell.x, cell.y))
@@ -166,11 +168,14 @@ func complete_level() -> void:
 	_advancing = true
 	GameState.play_sfx("door")
 	GameState.advance_level()
+	# Se difiere el cambio de escena: la puerta llama desde body_entered y liberar
+	# cuerpos dentro de un callback de fisica genera el error "Removing a
+	# CollisionObject node during a physics callback".
 	if GameState.level_index < GameState.level_count():
-		get_tree().change_scene_to_file("res://scenes/game.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/game.tscn")
 	else:
 		GameState.won = true
-		get_tree().change_scene_to_file("res://scenes/end_screen.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/end_screen.tscn")
 
 
 # --- Entrada táctil (Android) y teclado -------------------------------------

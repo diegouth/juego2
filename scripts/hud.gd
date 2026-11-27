@@ -3,6 +3,7 @@ extends Control
 ## texto y dibujo del joystick táctil.
 
 var _level_label: Label
+var _score_label: Label
 var _hint: Label
 var _hint_time := 0.0
 var _pulse := 0.0
@@ -14,6 +15,14 @@ func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	GameState.hearts_changed.connect(func(_v: int) -> void: queue_redraw())
 	GameState.key_changed.connect(func(_h: bool) -> void: queue_redraw())
+	GameState.score_changed.connect(_on_score_changed)
+
+	_score_label = UiKit.label("", 8, UiKit.GOLD)
+	_score_label.position = Vector2(128, 8)
+	_score_label.size = Vector2(200, 12)
+	_score_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	add_child(_score_label)
+	_on_score_changed(GameState.score)
 
 	_level_label = UiKit.label("NIVEL %d/%d" % [GameState.level_index + 1, GameState.level_count()], 8, UiKit.DIM)
 	_level_label.position = Vector2(470, 8)
@@ -31,6 +40,11 @@ func _ready() -> void:
 	help.position = Vector2(0, 340)
 	help.size = Vector2(640, 12)
 	add_child(help)
+
+
+func _on_score_changed(value: int) -> void:
+	if _score_label:
+		_score_label.text = "PUNTOS %04d" % value
 
 
 func show_hint(text: String) -> void:

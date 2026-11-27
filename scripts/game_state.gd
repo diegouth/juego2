@@ -4,6 +4,7 @@ extends Node
 
 signal hearts_changed(value: int)
 signal key_changed(has_key: bool)
+signal score_changed(value: int)
 
 const MAX_HEARTS := 3
 const LEVEL_FILES: Array[String] = [
@@ -11,11 +12,16 @@ const LEVEL_FILES: Array[String] = [
 	"res://levels/level_2.txt",
 ]
 const SFX_NAMES: Array[String] = ["pickup", "damage", "door", "gameover"]
+const POINTS_KEY := 50
+const POINTS_LEVEL := 100
+const SAVE_PATH := "user://record.cfg"
 
 var hearts := MAX_HEARTS
 var has_key := false
 var level_index := 0
 var won := false
+var score := 0
+var best_score := 0
 
 var _sfx: Dictionary = {}
 var _music: AudioStreamPlayer
@@ -25,6 +31,7 @@ func _ready() -> void:
 	_setup_input()
 	_setup_audio()
 	_start_music()
+	_load_record()
 
 
 # --- Entrada -----------------------------------------------------------------
@@ -83,8 +90,44 @@ func reset_run() -> void:
 	has_key = false
 	level_index = 0
 	won = false
+	score = 0
 	hearts_changed.emit(hearts)
 	key_changed.emit(has_key)
+	score_changed.emit(score)
+
+
+# --- Puntaje (transacciones del jugador) -------------------------------------
+## Suma puntos y actualiza el marcador de la HUD.
+func add_score(points: int) -> void:
+	score = maxi(score + points, 0)
+	score_changed.emit(score)
+
+
+## Moneda recogida: suma sus puntos y reproduce el sonido de recogida.
+func collect_coin(points: int) -> void:
+	add_score(points)
+	play_sfx("pickup")
+
+
+## Guarda el record si la partida lo supera. Devuelve true si es record nuevo.
+func commit_record() -> bool:
+	var is_record := score > best_score
+	if is_record:
+		best_score = score
+		_save_record()
+	return is_record
+
+
+func _load_record() -> void:
+	var cfg := ConfigFile.new()
+	if cfg.load(SAVE_PATH) == OK:
+		best_score = int(cfg.get_value("marcador", "record", 0))
+
+
+func _save_record() -> void:
+	var cfg := ConfigFile.new()
+	cfg.set_value("marcador", "record", best_score)
+	cfg.save(SAVE_PATH)
 
 
 ## Devuelve true cuando el jugador se queda sin corazones.
@@ -100,10 +143,12 @@ func collect_key() -> void:
 		return
 	has_key = true
 	key_changed.emit(has_key)
+	add_score(POINTS_KEY)
 	play_sfx("pickup")
 
 
 func advance_level() -> void:
+	add_score(POINTS_LEVEL)
 	level_index += 1
 	has_key = false
 	key_changed.emit(has_key)
